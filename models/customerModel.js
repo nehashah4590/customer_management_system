@@ -1,7 +1,12 @@
 const pool = require("../db"); 
 
-const getCustomer = async (customer_id) => {
-  const { rows } = await pool.query('SELECT * FROM customers WHERE customer_id = $1', [customer_id]);
+const getCustomer = async () => {
+  const { rows } = await pool.query('SELECT * FROM customers');
+  return rows;
+}
+const getCustomerIDByPhoneNumber = async (phone) => {
+  const { rows } = await pool.query('SELECT * FROM customers WHERE phone = $1', [phone]);
+  console.log(rows);
   return rows;
 }
 
@@ -35,4 +40,4 @@ const updateCustomerDetails = async (customerUpdatedData) => {
   }
 };
 
-module.exports = { addCustomer, getCustomer,updateCustomerDetails };
+module.exports = { addCustomer, getCustomer,updateCustomerDetails, getCustomerIDByPhoneNumber };

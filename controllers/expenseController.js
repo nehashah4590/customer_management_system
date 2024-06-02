@@ -42,9 +42,9 @@ const updateExpense = async (req, res) => {
 };
 
 const deleteExpense = async (req, res) => {
-    const expenseData = req.body;
+    const expense_id = req.query.expense_id;
     try {
-        await expenseModel.deleteExpense(expenseData);
+        await expenseModel.deleteExpense(expense_id);
         res.send('Expense deleted successfully');
     } catch (error) {
         console.error('Error deleting expense', error);

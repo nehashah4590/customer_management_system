@@ -18,11 +18,25 @@ const addCustomer = async (req, res) => {
 
 
 const getCustomer = async (req, res) =>{
-  const {customer_id} = req.body;
   try {
-    const result = await customerModel.getCustomer(customer_id);
+    const result = await customerModel.getCustomer();
     if (result) {
       res.status(201).json({ customerData: result });
+    } else {
+      res.status(500).json({ error: result.error });
+    }
+  } catch (error) {
+    console.error('Error getting customer data:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+}
+const getCustomerIDByPhoneNumber = async (req, res) =>{
+  const {phone} = req.body;
+  try {
+    const result = await customerModel.getCustomerIDByPhoneNumber(phone);
+    if (result) {
+      res.status(200).json({ customerData: result[0] });
     } else {
       res.status(500).json({ error: result.error });
     }
@@ -50,4 +64,4 @@ const updateCustomerDetails = async (req, res) =>{
 }
 
 
-module.exports = { addCustomer, getCustomer, updateCustomerDetails};
+module.exports = { addCustomer, getCustomer, updateCustomerDetails, getCustomerIDByPhoneNumber};

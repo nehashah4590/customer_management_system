@@ -1,7 +1,8 @@
 const pool = require("../db");
 
-const getOrder = async (order_id) => {
-    const { rows } = await pool.query('SELECT * FROM CustomerOrders WHERE order_id = $1', [order_id]);
+const getOrder = async (customer_id) => {
+  
+    const { rows } = await pool.query('SELECT * FROM CustomerOrders WHERE customer_id = $1', [customer_id]);
     return rows;
 }
 

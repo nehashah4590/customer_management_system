@@ -44,10 +44,16 @@ const updateLoyaltyProgram = async (req, res) => {
 };
 
 const deleteLoyaltyProgram = async (req, res) => {
+  
     const {program_id} = req.body;
+    
     try {
-        await loyaltyProgramModel.deleteLoyaltyProgram(program_id);
-        res.send('Loyalty program deleted successfully');
+      const result = await loyaltyProgramModel.deleteLoyaltyProgram(program_id);
+      if (result.success) {
+        res.status(201).json({ message: 'Loyalty Program deleted successfully' });
+      } else {
+        res.status(500).json({ error: result.error });
+      }
     } catch (error) {
         console.error('Error deleting loyalty program', error);
         res.status(500).send('Internal Server Error');

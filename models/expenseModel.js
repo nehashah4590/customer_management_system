@@ -45,8 +45,8 @@ const addExpenses = async (expenseData) => {
       }
     
   }
-  const deleteExpense = async(expenseData) =>{
-    const {expense_id} = expenseData;
+  const deleteExpense = async(expense_id) =>{
+
     await pool.query('DELETE FROM expenses WHERE expense_id = $1', [expense_id]);
   }
 // async function updateExpense(id, description, amount, date) {

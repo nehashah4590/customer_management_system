@@ -18,9 +18,9 @@ const addOrder = async (req, res) => {
 };
 
 const getOrder = async (req, res) => {
-  const {order_id} = req.body;
+  const customer_id = req.query.customer_id;
   try {
-    const order = await orderModel.getOrder(order_id);
+    const order = await orderModel.getOrder(customer_id);
     res.json({ orderData: order });
 } catch (error) {
     console.error('Error fetching expenses', error);
@@ -45,15 +45,10 @@ const updateOrder = async (req, res) =>{
 };
 
 const deleteOrder = async (req, res) => {
-  const {order_id} = req.body;
-
+  const order_id = req.query.order_id;
   try {
-    const result = await orderModel.deleteOrder(order_id);
-    if (result) {
-      res.status(201).json({ message: 'Order deleted successfully' });
-    } else {
-      res.status(500).json({ error: result.error });
-    }
+     await orderModel.deleteOrder(order_id);
+     res.status(201).json({ message: 'Order deleted successfully' });
   } catch (error) {
     console.error('Error deleting order:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
