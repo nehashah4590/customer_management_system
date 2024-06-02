@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import GetCustomerID from '../customers/GetCustomerID'
+import GetCustomerID from '../customers/GetCustomer'
 
 const AddCustomerLoyaltyTrans = () => {
   const [formData, setFormData] = useState({

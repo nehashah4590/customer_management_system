@@ -29,7 +29,7 @@ export default function GetCustomerID() {
   };
 
   return (
-    <div className="max-w-lg h-auto py-2 mt-10 mx-8 bg-white shadow-md rounded">
+    <div className="max-w-lg w-[400px] h-auto py-2 mt-10 mx-8 bg-white shadow-md rounded">
         <h2 className="text-xl font-bold p-4">Add New Loyalty Programs</h2>
       <form onSubmit={handleSubmit} className="w-full p-4 space-y-4 ">
         <div>
