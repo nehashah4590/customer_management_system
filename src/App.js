@@ -1,8 +1,8 @@
 import { useState} from "react";
 import CustomersLayout from "./components/customers/Layout";
-import AddCustomerOrder from "./components/orders/AddCustomerOrder";
+import OrderLayout from "./components/orders/Layout";
 import LoyaltyProgramLayout from "./components/loyaltyPrograms/Layout";
-import Addexpenses from "./components/expenses/Addexpenses";
+import ExpensesLayout from "./components/expenses/Layout";
 import AddCustomerLoyaltyTrans from "./components/customersLoyaltyrans/AddCustomerLoyaltyTrans";
 import { GoPeople } from "react-icons/go";
 import { MdProductionQuantityLimits , MdLoyalty } from "react-icons/md";
@@ -61,9 +61,9 @@ function App() {
       </div>
       <div className="w-full bg-gray-200">
         {addCustomer && <CustomersLayout/>}
-        {addCustomerOrder && <AddCustomerOrder/>}
+        {addCustomerOrder && <OrderLayout/>}
         {addLoyaltyProgram && <LoyaltyProgramLayout/>}
-        {addExpenses && <Addexpenses/>}
+        {addExpenses && <ExpensesLayout/>}
         {addCustomerLoyaltyTrans && <AddCustomerLoyaltyTrans/>}
       </div>
     </div>

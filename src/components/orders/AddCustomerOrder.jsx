@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import GetCustomerID from '../customers/GetCustomer'
 
 const AddCustomerOrder = () => {
   const [formData, setFormData] = useState({
@@ -43,8 +42,7 @@ const AddCustomerOrder = () => {
 
   return (
     <div className='flex'>
-    <GetCustomerID/>
-    <div className="w-[30vw] mt-10 p-6 bg-white shadow-md rounded-md">
+    <div className="w-[30vw] p-6 bg-white shadow-md rounded-md">
       <h1 className="text-2xl font-bold mb-6">Add Orders</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
