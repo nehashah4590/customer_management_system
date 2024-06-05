@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdSearch } from "react-icons/md";
+import { FaSort } from "react-icons/fa";
 
 const UpdateCustomersDetails = () => {
   const [customersData, setCustomersData] = useState([]);
@@ -87,10 +88,10 @@ const UpdateCustomersDetails = () => {
       <h1 className="text-2xl font-bold ">Customer Details</h1>
       <div className="">
         <div className='flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md font-bold '>
-          <p onClick={() => sorting("customer_id")} className='w-[50px] bg-gray-200 rounded-md px-4 py-2'>ID</p>
-          <p onClick={() => sorting("first_name")} className='w-[200px] bg-gray-200 rounded-md px-4 py-2'>Name</p>
-          <p onClick={() => sorting("email")} className='w-[300px] bg-gray-200 rounded-md px-4 py-2'>Email</p>
-          <p onClick={() => sorting("phone")} className='w-[100px] bg-gray-200 rounded-md px-4 py-2'>Phone</p>
+          <p onClick={() => sorting("customer_id")} className='flex w-[50px] bg-gray-200 rounded-md px-2 py-2'>ID<FaSort className='m-1'/></p>
+          <p onClick={() => sorting("first_name")} className='flex w-[200px] bg-gray-200 rounded-md px-4 py-2'> Name <FaSort className='m-1'/></p>
+          <p onClick={() => sorting("email")} className='flex w-[300px] bg-gray-200 rounded-md px-4 py-2'> Email <FaSort className='m-1'/></p>
+          <p onClick={() => sorting("phone")} className='flex w-[100px] bg-gray-200 rounded-md px-4 py-2'> Phone <FaSort className='m-1'/></p>
         </div>
         {filteredData.map(customer => (
           <div key={customer.customer_id} className="flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md">
