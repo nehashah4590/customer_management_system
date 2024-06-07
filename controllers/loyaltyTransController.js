@@ -18,10 +18,11 @@ const addCustomerLoyaltyTransactions = async (req, res) => {
   };
 
 const getCustomerLoyaltyTransactionsData = async (req, res) => {
-  const {customer_id} = req.body;
+   const phone = req.query.phone;
+
   try {
-    const order = await loyaltyTransModel.getCustomerLoyaltyTransactionsData(customer_id);
-    res.json(order);
+    const data = await loyaltyTransModel.getCustomerLoyaltyTransactionsData(phone);
+    res.json(data);
 } catch (error) {
     console.error('Error fetching Customer Loyalty TransactionsData', error);
     res.status(500).send('Internal Server Error');
@@ -29,7 +30,7 @@ const getCustomerLoyaltyTransactionsData = async (req, res) => {
 };
 
 const deleteCustomerLoyaltyTransactions = async (req, res) => {
-  const {transaction_id} = req.body;
+  const transaction_id = req.query.transaction_id;
     try {
       await loyaltyTransModel.deleteCustomerLoyaltyTransactions(transaction_id);
       res.send('Customer loyalty transaction deleted successfully');

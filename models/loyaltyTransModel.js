@@ -1,13 +1,15 @@
 const pool = require("../db");
 
-const getCustomerLoyaltyTransactionsData = async(customer_id) => {
-    const { rows } = await pool.query('SELECT * FROM CustomerLoyaltyTransactions WHERE customer_id = $1', [customer_id]);
+const getCustomerLoyaltyTransactionsData = async(phone) => {
+  const { rows } = await pool.query('SELECT * FROM CustomerLoyaltyTransactions INNER JOIN customers ON customers.customer_id = CustomerLoyaltyTransactions.customer_id WHERE customers.phone = $1', [phone]);
     return rows;
 }
 
 const addCustomerLoyaltyTransactions = async (CustomerLoyaltyTransactionsData) => {
-    const {customer_id, points, type, tenant_id } = CustomerLoyaltyTransactionsData;
-  
+    const {phone, points, type, tenant_id } = CustomerLoyaltyTransactionsData;
+    const { rows } = await pool.query('SELECT * FROM customers WHERE phone = $1', [phone]);
+    const customer_id = await rows[0].customer_id;
+    
     try {
       const query = `
         INSERT INTO CustomerLoyaltyTransactions (customer_id, points, type, tenant_id)

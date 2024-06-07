@@ -1,14 +1,15 @@
 const pool = require("../db");
 
-const getOrder = async (customer_id) => {
-  
-    const { rows } = await pool.query('SELECT * FROM CustomerOrders WHERE customer_id = $1', [customer_id]);
+const getOrder = async (phone) => {
+  const { rows } = await pool.query('SELECT * FROM CustomerOrders INNER JOIN customers ON customers.customer_id = CustomerOrders.customer_id WHERE customers.phone = $1', [phone]);
     return rows;
 }
 
 const addOrder = async (orderData) => {
-    const { customer_id, total_amount, items, tenant_id } = orderData;
-  
+    const { phone, total_amount, items, tenant_id } = orderData;
+    const { rows } = await pool.query('SELECT * FROM customers WHERE phone = $1', [phone]);
+    const customer_id = await rows[0].customer_id;
+    
     try {
       const query = `
         INSERT INTO CustomerOrders (customer_id, total_amount, items, tenant_id)

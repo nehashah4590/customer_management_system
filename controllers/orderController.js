@@ -18,9 +18,9 @@ const addOrder = async (req, res) => {
 };
 
 const getOrder = async (req, res) => {
-  const customer_id = req.query.customer_id;
+  const phone = req.query.phone;
   try {
-    const order = await orderModel.getOrder(customer_id);
+    const order = await orderModel.getOrder(phone);
     res.json({ orderData: order });
 } catch (error) {
     console.error('Error fetching expenses', error);

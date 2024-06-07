@@ -6,7 +6,6 @@ const getCustomer = async () => {
 }
 const getCustomerIDByPhoneNumber = async (phone) => {
   const { rows } = await pool.query('SELECT * FROM customers WHERE phone = $1', [phone]);
-  console.log(rows);
   return rows;
 }
 
