@@ -66,6 +66,7 @@ const UpdateCustomersDetails = () => {
       .then(response => {
         // Update local state with updated customer data
         console.log(response);
+        setNewPhoneNumber("");
 
       })
       .catch(error => {
@@ -76,18 +77,18 @@ const UpdateCustomersDetails = () => {
   return (
 
     <div className='mb-4 m-10'>
-      <div className='flex justify-center relative'>
+      <div className='flex justify-center relative my-4'>
         <input
           type="text"
           placeholder="Search customers"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className='px-4 py-2 rounded-md shadow-md w-[400px] '
+          className='px-4 py-2 rounded-md shadow-md w-[450px]'
           /><MdSearch  className=' absolute right-[200px] mt-1 text-3xl'/>
       </div>
       <h1 className="text-2xl font-bold ">Customer Details</h1>
-      <div className="">
-        <div className='flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md font-bold '>
+      <div className=" overflow-y-scroll pr-8 h-[80vh]">
+        <div className='flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md font-bold'>
           <p onClick={() => sorting("customer_id")} className='flex w-[50px] bg-gray-200 rounded-md px-2 py-2'>ID<FaSort className='m-1'/></p>
           <p onClick={() => sorting("first_name")} className='flex w-[200px] bg-gray-200 rounded-md px-4 py-2'> Name <FaSort className='m-1'/></p>
           <p onClick={() => sorting("email")} className='flex w-[300px] bg-gray-200 rounded-md px-4 py-2'> Email <FaSort className='m-1'/></p>
@@ -99,8 +100,8 @@ const UpdateCustomersDetails = () => {
             <div className='w-[100px] overflow-x-auto'>{customer.first_name}</div>
             <div className='w-[100px] overflow-x-auto'>{customer.last_name}</div>
             <div className='w-[300px] overflow-x-auto'>{customer.email}</div>
-            <input className='w-[100px]' type="text" defaultValue={customer.phone} onChange={(e) => setNewPhoneNumber(e.target.value)}></input>
-            <button onClick={() => updatePhoneNumber(customer.customer_id)} className="ml-2 bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-green-400">Update</button>
+            <input className='w-[100px] overflow-x-auto cursor-pointer p-1' type="text" defaultValue={customer.phone} onChange={(e) => setNewPhoneNumber(e.target.value)}></input>
+            <button onClick={() => updatePhoneNumber(customer.customer_id)} className="ml-2 bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-green-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-600" disabled={!newPhoneNumber}>Update</button>
           </div>
         ))}
       </div>

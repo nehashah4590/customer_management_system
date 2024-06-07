@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddCustomers = () => {
+
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -11,6 +12,8 @@ const AddCustomers = () => {
     loyalty_points: '',
     tenant_id:20
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -21,10 +24,11 @@ const AddCustomers = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/customers`, formData);
       console.log('Data sent successfully:', response.data);
-      // Optionally, reset the form after successful submission
+      setLoading(false);
       setFormData({
         first_name: '',
         last_name: '',
@@ -35,6 +39,8 @@ const AddCustomers = () => {
       });
     } catch (error) {
       console.error('Error sending data:', error);
+      setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -45,11 +51,11 @@ const AddCustomers = () => {
         <div className="mb-4 flex">
           <div className="w-1/2 mr-2">
             <label htmlFor="first_name" className="block mb-1">First Name</label>
-            <input type="text" id="first_name" name="first_name" value={formData.first_name} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+            <input type="text" id="first_name" name="first_name" value={formData.first_name} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" required/>
           </div>
           <div className="w-1/2 ml-2">
             <label htmlFor="last_name" className="block mb-1">Last Name</label>
-            <input type="text" id="last_name" name="last_name" value={formData.last_name} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+            <input type="text" id="last_name" name="last_name" value={formData.last_name} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" required/>
           </div>
         </div>
         <div className="mb-4 flex">
@@ -59,18 +65,20 @@ const AddCustomers = () => {
           </div>
           <div className="w-1/2 ml-2">
             <label htmlFor="phone" className="block mb-1">Phone</label>
-            <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+            <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" required/>
           </div>
         </div>
         <div className="mb-4">
           <label htmlFor="address" className="block mb-1">Address</label>
-          <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+          <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" required/>
         </div>
         <div className="mb-4">
           <label htmlFor="loyalty_points" className="block mb-1">Loyalty Points</label>
           <input type="number" id="loyalty_points" name="loyalty_points" value={formData.loyalty_points} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
         </div>
         <button type="submit" className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-green-400">Submit</button>
+        {loading &&<p>LOADING....</p>}
+        {error&& <p className='text-red-500'>{error}</p>}
       </form>
     </div>
   );

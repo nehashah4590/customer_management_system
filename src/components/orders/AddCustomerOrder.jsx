@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AddCustomerOrder = () => {
   const [formData, setFormData] = useState({
-    customer_id: '',
+    phone: '',
     total_amount: '',
     items: '',
     tenant_id: ''
@@ -29,29 +29,30 @@ const AddCustomerOrder = () => {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/orders`, formData);
       setSuccess('Data submitted successfully!');
       console.log('Response:', response.data);
+      setFormData({ 
+        phone: '',
+        total_amount: '',
+        items: '',
+        tenant_id: ''})
     } catch (err) {
       setError('Error submitting data');
       console.error('Error:', err);
     }
-    setFormData({ 
-      customer_id: '',
-    total_amount: '',
-    items: '',
-    tenant_id: ''})
+    
   };
 
   return (
     <div className='flex'>
-    <div className="w-[30vw] p-6 bg-white shadow-md rounded-md">
+    <div className="w-[30vw] p-6 bg-white shadow-md rounded-md mt-10">
       <h1 className="text-2xl font-bold mb-6">Add Orders</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="customer_id" className="block text-gray-700">Customer ID</label>
+          <label htmlFor="phone" className="block text-gray-700">Customer Phone number</label>
           <input
-            type="number"
-            id="customer_id"
-            name="customer_id"
-            value={formData.customer_id}
+            type="text"
+            id="phone"
+            name="phone"
+            value={formData.phone}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />

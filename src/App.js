@@ -3,7 +3,7 @@ import CustomersLayout from "./components/customers/Layout";
 import OrderLayout from "./components/orders/Layout";
 import LoyaltyProgramLayout from "./components/loyaltyPrograms/Layout";
 import ExpensesLayout from "./components/expenses/Layout";
-import AddCustomerLoyaltyTrans from "./components/customersLoyaltyrans/AddCustomerLoyaltyTrans";
+import LoyaltyTransLayout from "./components/customersLoyaltyrans/Layout";
 import { GoPeople } from "react-icons/go";
 import { MdProductionQuantityLimits, MdLoyalty } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
@@ -65,7 +65,7 @@ function App() {
         {addCustomerOrder && <OrderLayout />}
         {addLoyaltyProgram && <LoyaltyProgramLayout />}
         {addExpenses && <ExpensesLayout />}
-        {addCustomerLoyaltyTrans && <AddCustomerLoyaltyTrans />}
+        {addCustomerLoyaltyTrans && <LoyaltyTransLayout />}
       </div>
     </div>
   );

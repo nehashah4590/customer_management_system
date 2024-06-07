@@ -4,13 +4,13 @@ import axios from 'axios';
 const GetOrderData = () => {
     const [orderData, setOrderData] = useState([]);
     const [item, setItem] = useState('');
-    const [customer_id, setCustomerID] = useState('');
+    const [phone, setPhone] = useState('');
     const [total, setTotal] = useState('');
 
     const handleSubmit =async(e) => {
         e.preventDefault();
       // Fetch customer data from the backend
-      await axios.get(`${process.env.REACT_APP_API_HOST}/orders?customer_id=${customer_id}`)
+      await axios.get(`${process.env.REACT_APP_API_HOST}/orders?phone=${phone}`)
         .then(response => {
             setOrderData(response.data.orderData);
             console.log(response.data)
@@ -57,11 +57,11 @@ const GetOrderData = () => {
         <form onSubmit={handleSubmit}>
         <div className="mb-4 w-[300px] flex space-x-2">
           <input
-            type="number"
-            id="customer_id"
-            placeholder="Enter customer id"
-            value={customer_id}
-            onChange={(e)=>setCustomerID(e.target.value)}
+            type="text"
+            id="phone"
+            placeholder="Enter customer phone"
+            value={phone}
+            onChange={(e)=>setPhone(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
           <button
