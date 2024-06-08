@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function GetCustomerID() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [customerId, setCustomerId] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ export default function GetCustomerID() {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/customers/getCustomerIDByPhoneNumber` , { phone:phoneNumber });
       console.log(response.data);
       setCustomerId(response.data.customerData.customer_id);
-      setError('');
+      setError(null);
     } catch (err) {
       setError('Failed to get customer ID. Please try again.');
       setCustomerId('');
@@ -23,7 +23,7 @@ export default function GetCustomerID() {
   };
 
   return (
-    <div className="w-[340px] h-[220px] py-2 mt-10 mx-8 bg-white shadow-md rounded">
+    <div className="w-[340px] h-[200px] py-2 mt-10 mx-8 bg-white shadow-md rounded">
       <form onSubmit={handleSubmit} className="w-full p-4 space-y-4 ">
         <div>
           <label htmlFor="phoneNumber" className="block text-xl font-bold mb-4">
@@ -48,8 +48,8 @@ export default function GetCustomerID() {
           </button>
         </div>
       </form>
-      {customerId && <p className=" px-4 py-1 text-green-600">Customer ID: {customerId}</p>}
-      {error && <p className="px-4 py-2 text-red-600">{error}</p>}
+      {customerId && <p className=" px-4 text-green-600">Customer ID: {customerId}</p>}
+      {error && <p className="px-4 text-red-600">{error}</p>}
     </div>
   );
 }

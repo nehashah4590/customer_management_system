@@ -3,43 +3,52 @@ import axios from 'axios';
 
 const Addexpenses = () => {
   const [formData, setFormData] = useState({
-    description:'' ,
-    amount:'' ,
-    expense_type:'',
-    tenant_id:20
+    description: '',
+    amount: '',
+    expense_type: '',
+    tenant_id: 20
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(null);
+    setSuccess(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/expenses`, formData);
       console.log('Data sent successfully:', response.data);
-      // Optionally, reset the form after successful submission
+      setLoading(false);
+      setSuccess("Data Submitted Successfully!")
       setFormData({
-        description:'' ,
-        amount:'' ,
-        expense_type:'',
-        tenant_id:20
+        description: '',
+        amount: '',
+        expense_type: '',
+        tenant_id: 20
       });
     } catch (error) {
+      setLoading(false);
+      setError(error.message);
       console.error('Error sending data:', error);
     }
   };
 
   return (
     <div className="w-[400px] h-auto py-2 mt-10 mx-8 bg-white shadow-md rounded">
-        <h2 className="text-xl font-bold p-4">Add Expenses</h2>
+      <h2 className="text-xl font-bold p-4">Add Expenses</h2>
       <form onSubmit={handleSubmit} className="w-full p-4 space-y-4 ">
         <div>
           <label htmlFor="name" className="block mb-1">
-          expense type
+            expense type
           </label>
           <input
             type="text"
@@ -88,6 +97,9 @@ const Addexpenses = () => {
           </button>
         </div>
       </form>
+      {loading && <div className="mt-4">LOADING...</div>}
+      {error && <div className="mt-4 text-red-600">{error}</div>}
+      {success && <div className="mt-4 text-green-600">{success}</div>}
     </div>
   );
 };

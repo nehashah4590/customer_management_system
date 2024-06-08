@@ -76,18 +76,18 @@ const GetOrderData = () => {
         <div className="">
             <div className='flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md font-bold '>
                 <p className='w-[100px] bg-gray-200 rounded-md px-4 py-2'>OrderID</p>
-                <p className='w-[100px] bg-gray-200 rounded-md px-4 py-2'>CustomerID</p>
+                <p className='w-[100px] bg-gray-200 rounded-md px-1 py-2'>CustomerID</p>
                 <p className='w-[200px] bg-gray-200 rounded-md px-4 py-2'>Date</p>
                 <p className='w-[150px] bg-gray-200 rounded-md px-4 py-2'>Items</p>
                 <p className='w-[100px] bg-gray-200 rounded-md px-4 py-2'>Total</p>
             </div>
           {orderData?.map(OrderData => (
             <div key={OrderData.order_id} className="flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md">
-              <div className='w-[100px] overflow-x-auto'>{OrderData.order_id} </div>
-              <div className='w-[100px] overflow-x-auto'>{OrderData.customer_id} </div>
+              <div className='w-[100px] text-center overflow-x-auto'>{OrderData.order_id} </div>
+              <div className='w-[100px] text-center overflow-x-auto'>{OrderData.customer_id} </div>
               <div className='w-[200px] overflow-x-auto'>{OrderData.date} </div>
-              <input className='w-[150px] overflow-x-auto text-center' defaultValue={OrderData.items} type='text' onChange={(e)=>setItem(e.target.value)}/>
-              <input className='w-[100px] overflow-x-auto text-center' defaultValue={OrderData.total_amount} type='text' onChange={(e)=>setTotal(e.target.value)}/>
+              <input className='w-[150px] overflow-x-auto text-center cursor-pointer' defaultValue={OrderData.items} type='text' onChange={(e)=>setItem(e.target.value)}/>
+              <input className='w-[100px] overflow-x-auto text-center cursor-pointer' defaultValue={OrderData.total_amount} type='text' onChange={(e)=>setTotal(e.target.value)}/>
               <button onClick={() => updateDetails(OrderData.order_id)} className="ml-2 bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-green-400">Update</button>
               <button onClick={() => deleteOrders(OrderData.order_id)} className="ml-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-400">Delete</button>
             </div>

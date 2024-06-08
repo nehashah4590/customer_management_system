@@ -65,9 +65,9 @@ const UpdateCustomersDetails = () => {
             <div key={ExpenseData.expense_id} className="flex items-center border border-gray-300 p-2 space-x-2 bg-white rounded-md shadow-md">
               <div className='w-[100px] overflow-x-auto'>{ExpenseData.expense_id} </div>
               <div className='w-[200px] overflow-x-auto'>{ExpenseData.date} </div>
-              <input className='w-[200px] overflow-x-auto text-center' defaultValue={ExpenseData.description} type='text' onChange={(e)=>setDescription(e.target.value)}/>
-              <input className='w-[150px] overflow-x-auto text-center' defaultValue={ExpenseData.expense_type} type='text' onChange={(e)=>setType(e.target.value)}/>
-              <input className='w-[100px] overflow-x-auto text-center' defaultValue={ExpenseData.amount} type='text' onChange={(e)=>setAmount(e.target.value)}/>
+              <input className='w-[200px] overflow-x-auto text-center cursor-pointer' defaultValue={ExpenseData.description} type='text' onChange={(e)=>setDescription(e.target.value)}/>
+              <input className='w-[150px] overflow-x-auto text-center cursor-pointer' defaultValue={ExpenseData.expense_type} type='text' onChange={(e)=>setType(e.target.value)}/>
+              <input className='w-[100px] overflow-x-auto text-center cursor-pointer' defaultValue={ExpenseData.amount} type='text' onChange={(e)=>setAmount(e.target.value)}/>
               <button onClick={() => updateDetails(ExpenseData.expense_id)} className="ml-2 bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-green-400">Update</button>
               <button onClick={() => deleteExpense(ExpenseData.expense_id)} className="ml-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-400">Delete</button>
             </div>

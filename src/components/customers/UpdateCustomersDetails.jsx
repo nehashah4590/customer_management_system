@@ -84,7 +84,7 @@ const UpdateCustomersDetails = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className='px-4 py-2 rounded-md shadow-md w-[450px]'
-          /><MdSearch  className=' absolute right-[200px] mt-1 text-3xl'/>
+          /><MdSearch  className=' absolute right-[200px] mt-[5px] text-3xl'/>
       </div>
       <h1 className="text-2xl font-bold ">Customer Details</h1>
       <div className=" overflow-y-scroll pr-8 h-[80vh]">

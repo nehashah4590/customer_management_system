@@ -10,62 +10,64 @@ import { GiExpense } from "react-icons/gi";
 import { FaMedal } from "react-icons/fa";
 
 function App() {
-  const [addCustomer, setAddCustomer] = useState(false);
-  const [addCustomerOrder, setAddCustomerOrder] = useState(false);
-  const [addLoyaltyProgram, setAddLoyaltyProgram] = useState(false);
-  const [addExpenses, setAddExpenses] = useState(false);
-  const [addCustomerLoyaltyTrans, setAddCustomerLoyaltyTrans] = useState(false);
+  const [showCustomer, setShowCustomer] = useState(false);
+  const [showCustomerOrder, setShowCustomerOrder] = useState(false);
+  const [showLoyaltyProgram, setShowLoyaltyProgram] = useState(false);
+  const [showExpenses, setShowExpenses] = useState(false);
+  const [showCustomerLoyaltyTrans, setShowCustomerLoyaltyTrans] = useState(false);
 
   const handleToggle = (setter) => {
-    setAddCustomer(false);
-    setAddCustomerOrder(false);
-    setAddLoyaltyProgram(false);
-    setAddExpenses(false);
-    setAddCustomerLoyaltyTrans(false);
+    setShowCustomer(false);
+    setShowCustomerOrder(false);
+    setShowLoyaltyProgram(false);
+    setShowExpenses(false);
+    setShowCustomerLoyaltyTrans(false);
     setter(true);
   };
 
   return (
     <div className="flex">
-      <div className="bg-blue-900 w-[20vw] h-screen py-8 ">
+      {/* Sidebar */}
+      <div className="bg-blue-900 w-[17vw] h-screen py-8 ">
         <button
-          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${addCustomer ? 'bg-green-400' : 'bg-transparent'}`}
-          onClick={() => handleToggle(setAddCustomer)}
+          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex  ${showCustomer ? 'bg-green-400' : 'bg-transparent'}`}
+          onClick={() => handleToggle(setShowCustomer)}
         >
           <GoPeople className="mr-4 text-2xl" /> Customers
         </button>
         <button
-          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${addCustomerOrder ? 'bg-green-400' : 'bg-transparent'}`}
-          onClick={() => handleToggle(setAddCustomerOrder)}
+          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${showCustomerOrder ? 'bg-green-400' : 'bg-transparent'}`}
+          onClick={() => handleToggle(setShowCustomerOrder)}
         >
           <MdProductionQuantityLimits className="mr-4 text-2xl" />Orders
         </button>
         <button
-          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${addCustomerLoyaltyTrans ? 'bg-green-400' : 'bg-transparent'}`}
-          onClick={() => handleToggle(setAddCustomerLoyaltyTrans)}
+          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${showCustomerLoyaltyTrans ? 'bg-green-400' : 'bg-transparent'}`}
+          onClick={() => handleToggle(setShowCustomerLoyaltyTrans)}
         >
           <FaMedal className="mr-4 text-2xl" />Loyalty Transactions
         </button>
         <button
-          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${addLoyaltyProgram ? 'bg-green-400' : 'bg-transparent'}`}
+          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${showLoyaltyProgram ? 'bg-green-400' : 'bg-transparent'}`}
 
-          onClick={() => handleToggle(setAddLoyaltyProgram)}
+          onClick={() => handleToggle(setShowLoyaltyProgram)}
         >
           <MdLoyalty className="mr-4 text-2xl" />Loyalty Programs
         </button>
         <button
-          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${addExpenses ? 'bg-green-400' : 'bg-transparent'}`}
-          onClick={() => handleToggle(setAddExpenses)}
+          className={`px-8 font-semibold py-4 mt-8 w-full hover:bg-green-400 text-white flex ${showExpenses ? 'bg-green-400' : 'bg-transparent'}`}
+          onClick={() => handleToggle(setShowExpenses)}
         >
           <GiExpense className="mr-4 text-2xl" />Expenses
         </button>
       </div>
-      <div className="w-full bg-gray-200">
-        {addCustomer && <CustomersLayout />}
-        {addCustomerOrder && <OrderLayout />}
-        {addLoyaltyProgram && <LoyaltyProgramLayout />}
-        {addExpenses && <ExpensesLayout />}
-        {addCustomerLoyaltyTrans && <LoyaltyTransLayout />}
+      {/* Main Content */}
+      <div className="w-[83vw] bg-gray-200">
+        {showCustomer && <CustomersLayout />}
+        {showCustomerOrder && <OrderLayout />}
+        {showLoyaltyProgram && <LoyaltyProgramLayout />}
+        {showExpenses && <ExpensesLayout />}
+        {showCustomerLoyaltyTrans && <LoyaltyTransLayout />}
       </div>
     </div>
   );

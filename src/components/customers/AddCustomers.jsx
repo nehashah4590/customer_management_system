@@ -13,13 +13,16 @@ const AddCustomers = () => {
     tenant_id:20
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(null);
+    setSuccess(null);
   };
 
   const handleSubmit = async (e) => {
@@ -28,6 +31,7 @@ const AddCustomers = () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/customers`, formData);
       console.log('Data sent successfully:', response.data);
+      setSuccess('Data submitted successfully!');
       setLoading(false);
       setFormData({
         first_name: '',
@@ -45,7 +49,7 @@ const AddCustomers = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-md shadow-md h-auto ">
+    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-md shadow-md h-auto">
       <h2 className="text-xl font-bold mb-8">Add New Customer</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4 flex">
@@ -79,6 +83,7 @@ const AddCustomers = () => {
         <button type="submit" className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-green-400">Submit</button>
         {loading &&<p>LOADING....</p>}
         {error&& <p className='text-red-500'>{error}</p>}
+        {success && <div className="text-green-600">{success}</div>}
       </form>
     </div>
   );

@@ -18,13 +18,12 @@ const AddCustomerOrder = () => {
       ...formData,
       [name]: value
     });
+    setError(null);
+    setSuccess(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
-
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_HOST}/orders`, formData);
       setSuccess('Data submitted successfully!');
