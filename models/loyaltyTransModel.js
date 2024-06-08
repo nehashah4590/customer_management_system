@@ -1,7 +1,7 @@
 const pool = require("../db");
 
-const getCustomerLoyaltyTransactionsData = async(phone) => {
-  const { rows } = await pool.query('SELECT * FROM CustomerLoyaltyTransactions INNER JOIN customers ON customers.customer_id = CustomerLoyaltyTransactions.customer_id WHERE customers.phone = $1', [phone]);
+const getCustomerLoyaltyTransactionsData = async() => {
+  const { rows } = await pool.query('SELECT * FROM CustomerLoyaltyTransactions INNER JOIN customers ON customers.customer_id = CustomerLoyaltyTransactions.customer_id ');
     return rows;
 }
 
